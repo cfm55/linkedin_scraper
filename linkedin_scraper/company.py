@@ -87,13 +87,8 @@ class Company(Scraper):
 
     def __parse_employee__(self, employee_raw):
         try:
-            return Person(
-                linkedin_url = employee_raw.find_element_by_tag_name("a").get_attribute("href"),
-                name = (employee_raw.text.split("\n") or [""])[0].strip(),
-                driver = self.driver,
-                get = False,
-                scrape = False
-                )
+            employee_profile_summary = (employee_raw.text.split("\n") or [""])[0].strip()
+            return employee_profile_summary
         except:
             return None
 
